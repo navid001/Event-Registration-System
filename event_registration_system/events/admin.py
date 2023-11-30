@@ -13,3 +13,6 @@ class RegistrationAdmin(admin.ModelAdmin):
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(Registration, RegistrationAdmin)
+
+
+

@@ -1,9 +1,30 @@
 {% extends 'events/base_generic.html' %}
-
 {% block content %}
-  <h1>{{ event.title }}</h1>
-  <p>{{ event.description }}</p>
-  <p>Date: {{ event.date }} | Time: {{ event.time }} | Location: {{ event.location_name }}</p>
-  <p>Available Slots: {{ event.available_slots }}</p>
-  <a href="{% url 'events:event_registration' event.id %}">Register for this event</a>
+  <div id="event-details">
+    <h1>{{ event.title }}</h1>
+    <p>{{ event.description }}</p>
+    <p>Date: {{ event.date }} | Time: {{ event.time }} | Location: {{ event.location_name }}</p>
+    <p>Available Slots: {{ event.available_slots }}</p>
+
+    {% if not registration_exists %}
+      <button id="registration-btn" onclick="registerForEvent('{{ event.id }}')">Register for this event</button>
+    {% else %}
+      <p id="registration-status">You are already registered for this event.</p>
+    {% endif %}
+
+    <a href="{% url 'events:logout' %}" id="logout-link">Logout</a>
+    <p><a href="{% url 'events:homepage' %}">Back to Home</a></p>
+  </div>
+
+  <!-- Include the JavaScript script -->
+  <script>
+    function registerForEvent(eventId) {
+        // Assuming you have an appropriate URL for event registration
+        var registrationUrl = "/events/" + eventId + "/register/";
+
+        // Perform registration via AJAX or redirect to the registration URL
+        // For simplicity, let's redirect to the registration URL
+        window.location.href = registrationUrl;
+    }
+  </script>
 {% endblock %}

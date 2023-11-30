@@ -1,0 +1,16 @@
+{% extends 'events/base_generic.html' %}
+{% block content %}
+  <div id="signup-form">
+    <h2>Sign Up</h2>
+    <form method="post" id="signupForm">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Sign Up</button>
+    </form>
+    <p id="password-match-error" class="error-message" style="display: none;">Passwords do not match.</p>
+    <p id="unique-username-error" class="error-message" style="display: none;">Username is already taken.</p>
+    <p id="success-message" class="success-message" style="display: none;">Account created successfully. You can now log in.</p>
+  </div>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

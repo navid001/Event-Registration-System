@@ -1,13 +1,24 @@
+<!-- events/templates/events/user_dashboard.html -->
+
 {% extends 'events/base_generic.html' %}
 
 {% block content %}
-  <h1>User Dashboard</h1>
-  <h2>Events You've Registered For:</h2>
-  <ul>
-    {% for registration in registrations %}
-      <li>{{ registration.event.title }} ({{ registration.event.date }})</li>
-    {% endfor %}
-  </ul>
-  <p><a href="{% url 'events:event_list' %}">Back to Event List</a></p>
-  <a href="{% url 'events:user_dashboard' %}">Dashboard</a>
+  <div class="dashboard-container">
+    <h1>User Dashboard</h1>
+    <div class="user-info">
+      <p>Welcome, {{ user.username }}!</p>
+      <!-- Include additional user information here -->
+    </div>
+    <h2>Your Registered Events:</h2>
+    <ul class="registered-events">
+      {% for event in registered_events %}
+        <li>{{ event.title }} ({{ event.date }})</li>
+      {% endfor %}
+    </ul>
+    <div class="dashboard-links">
+      <a href="{% url 'events:homepage' %}">Back to Homepage</a>
+      <a href="{% url 'events:event_list' %}">See Event List</a>
+      <a href="{% url 'events:logout' %}">Logout</a>
+    </div>
+  </div>
 {% endblock %}

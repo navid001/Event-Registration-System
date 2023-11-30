@@ -1,0 +1,46 @@
+{% extends 'events/base_generic.html' %}
+{% block content %}
+  <div class="event-registration-container">
+    <h1>Register New Event</h1>
+
+    <form method="post" action="{% url 'events:register_new_event' %}" id="event-registration-form">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label for="title">Event Title:</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Event Description:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Event Date:</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="time">Event Time:</label>
+        <input type="time" id="time" name="time" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="location_name">Event Location:</label>
+        <input type="text" id="location_name" name="location_name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="available_slots">Available Slots:</label>
+        <input type="number" id="available_slots" name="available_slots" required>
+      </div>
+
+      <button type="submit">Register Event</button>
+    </form>
+    
+    <p><a href="{% url 'events:homepage' %}">Back to Event List</a></p>
+    <a href="{% url 'events:logout' %}">Logout</a>
+  </div>
+
+{% endblock %}

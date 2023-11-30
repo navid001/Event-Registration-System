@@ -1,0 +1,19 @@
+{% extends 'events/base_generic.html' %}
+{% block content %}
+  <div id="homepage-content">
+    <h2 id="welcome-message">Welcome to Event Registration System</h2>
+    <div id="action-links">
+      {% if user.is_authenticated %}
+        <a href="{% url 'events:event_list' %}">View Events</a>
+        <span>|</span>
+        <a href="{% url 'events:user_dashboard' %}">Your Dashboard</a>
+        <span>|</span>
+        <a href="{% url 'events:logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'events:signup' %}">Sign Up</a>
+        <span>|</span>
+        <a href="{% url 'events:login' %}">Log In</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

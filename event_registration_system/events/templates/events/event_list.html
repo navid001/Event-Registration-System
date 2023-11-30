@@ -1,9 +1,25 @@
 {% extends 'events/base_generic.html' %}
 {% block content %}
-  <h1>Event List</h1>
-  <ul>
-    {% for event in events %}
-      <li><a href="{% url 'events:event_detail' event.id %}">{{ event.title }}</a></li>
-    {% endfor %}
-  </ul>
+  <div id="event-list">
+    <h1>Event List</h1>
+
+    <form id="search-form" method="get" action="{% url 'events:event_list' %}">
+      <input type="text" id="search-input" name="q" placeholder="Search events..." value="{{ query }}">
+      <button type="submit" id="search-btn">Search</button>
+    </form>
+
+    {% if query %}
+      <p>Search results for: "{{ query }}"</p>
+    {% endif %}
+
+    <ul>
+      {% for event in events %}
+        <li><a href="{% url 'events:event_detail' event.id %}">{{ event.title }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'events:register_new_event' %}" id="create-event-btn">Create New Event</a></p>
+    <p><a href="{% url 'events:homepage' %}" id="logout-link">Back to Home</a></p>
+    <a href="{% url 'events:logout' %}" id="logout-link">Logout</a>
+  </div>
 {% endblock %}
