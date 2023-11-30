@@ -1,0 +1,13 @@
+{% extends 'events/base_generic.html' %}
+
+{% block content %}
+  <h1>User Dashboard</h1>
+  <h2>Events You've Registered For:</h2>
+  <ul>
+    {% for registration in registrations %}
+      <li>{{ registration.event.title }} ({{ registration.event.date }})</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{% url 'events:event_list' %}">Back to Event List</a></p>
+  <a href="{% url 'events:user_dashboard' %}">Dashboard</a>
+{% endblock %}
